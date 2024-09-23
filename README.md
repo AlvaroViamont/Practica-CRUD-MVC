@@ -1,1 +1,1 @@
-# Practica-CRUD-MVC
+# Sistema de gestión de inventario
