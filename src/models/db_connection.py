@@ -5,10 +5,10 @@ from paths import DB_PATH
 
 class BBDD:
     def __init__(self) -> None:
-        self.conn = None
+        self.con = None
         try:
-            self.conn = sqlite3.connect(DB_PATH)
-            self.cursor = self.conn.cursor()
+            self.con = sqlite3.connect(DB_PATH)
+            self.cursor = self.con.cursor()
         except Error as e:
             print(e)
     
@@ -24,10 +24,10 @@ class BBDD:
             
             self.cursor.execute('''
                                     CREATE TABLE IF NOT EXISTS PRODUCT (
-                                        PRODUCT_ID integer PRIMARY KEY,
+                                        PRODUCT_ID text PRIMARY KEY,
                                         PRODUCT_NAME text NOT NULL,
-                                        PRODUCT_PRICE integer NOT NULL,
-                                        PRODUCT_STOCK integer NOT NULL,
+                                        PRODUCT_PRICE text NOT NULL,
+                                        PRODUCT_STOCK text NOT NULL,
                                         PRODUCT_DESCRIPTION text,
                                         PRODUCT_CATEGORY_ID text NOT NULL,
                                         FOREIGN KEY (PRODUCT_CATEGORY_ID) REFERENCES PATIENT(CATEGORY_ID)
@@ -37,4 +37,4 @@ class BBDD:
             print(e)
     
     def close_conection(self):
-        self.conn.close()
+        self.con.close()
